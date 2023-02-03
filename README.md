@@ -11,7 +11,7 @@ And run:
 python3 main.py
 ```
 
-Can be used with or without an argument
+Can be used with or without an arguments
 
 ```
 Usage: main.py [-h] [-L L] [-C C] [-P P]
