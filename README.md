@@ -1,10 +1,14 @@
 # Simple-Password-Generator
 A Simple Modern CLI Password Generator
 
-Just install requirements and use:
+Just install requirements:
 
 ```
 pip install -r requirements.txt 
+```
+And run:
+```
+python3 main.py
 ```
 
 Can be used with or without an argument
