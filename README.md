@@ -3,7 +3,9 @@ A Simple Modern CLI Password Generator
 
 Just install requirements and use:
 
-# pip install -r requirements.txt 
+```
+pip install -r requirements.txt 
+```
 
 Can be used with or without an argument
 
