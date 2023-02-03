@@ -15,6 +15,7 @@ Can be used with or without an argument
 
 Usage: main.py [-h] [-L L] [-C C] [-P P]
 
+
 options:
   -h, --help  show this help message and exit
   -L L        Length of generated passwords
