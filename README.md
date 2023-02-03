@@ -13,6 +13,7 @@ python3 main.py
 
 Can be used with or without an argument
 
+```
 Usage: main.py [-h] [-L L] [-C C] [-P P]
 
 
@@ -21,3 +22,4 @@ options:
   -L L        Length of generated passwords
   -C C        Generated password count
   -P P        Path to save result
+```
