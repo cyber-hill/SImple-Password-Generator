@@ -1,6 +1,9 @@
 # Simple-Password-Generator
 A Simple Modern CLI Password Generator
 
+![image](https://user-images.githubusercontent.com/72434312/216671661-90a76956-b44c-4622-880e-9f34e66609b1.png)
+
+
 Just install requirements:
 
 ```
