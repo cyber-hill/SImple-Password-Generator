@@ -75,7 +75,7 @@ if args.L or args.C or args.P:
                         with open(f"{args.P}result_{date}.txt", "w", encoding="utf-8") as file:
                             file.write("==========================================")
                             for passwords in generated_passwords:
-                                file.write(passwords + "\n")
+                                file.write("\n"+passwords + "\n")
                                 file.write("==========================================")
                             else:
                                 print(f"Result has been successfully saved in {args.P}result_{date}.txt")
@@ -121,7 +121,7 @@ else:
                     with open(f"{path}result_{date}.txt", "w", encoding="utf-8") as file:
                         file.write("==========================================")
                         for passwords in generated_passwords:
-                            file.write(passwords + "\n")
+                            file.write("\n"+passwords + "\n")
                             file.write("==========================================")
                         else:
                             print(f"Result has been successfully saved in {path}result_{date}.txt")
