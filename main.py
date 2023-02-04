@@ -35,13 +35,44 @@ def gen_pass(password_lenght, password_count):
     return password_list
 
 
+def print_generated_passwords(generated_passwords):
+    """
+    :param generated_passwords:
+    :return: None
+    """
+
+    print("\n==========================================")
+    for password in generated_passwords:
+        print(colorama.Fore.LIGHTGREEN_EX + password + colorama.Fore.RESET)
+        print("==========================================")
+
+
+def save_result_in_file(generated_passwords, path):
+    if os.path.exists(path):
+        date = f"{datetime.datetime.now().year}_{datetime.datetime.now().month}_{datetime.datetime.now().day}_{datetime.datetime.now().hour}_{datetime.datetime.now().minute}_{datetime.datetime.now().second}"
+        try:
+            with open(f"{path}result_{date}.txt", "w", encoding="utf-8") as file:
+                file.write("==========================================")
+                for passwords in generated_passwords:
+                    file.write("\n" + passwords + "\n")
+                    file.write("==========================================")
+                else:
+                    print(f"Result has been successfully saved in {path}result_{date}.txt")
+        except:
+            if PermissionError:
+                print(colorama.Fore.LIGHTRED_EX + "Unable create file in directory:Permission denied")
+            else:
+                print("Unknown Error")
+
+    elif not os.path.exists(path):
+        print(colorama.Fore.LIGHTRED_EX + "Path does not exists!")
+
 
 parser = argparse.ArgumentParser()
 
 parser.add_argument('-L', type=int, help="Length of generated passwords")
 parser.add_argument('-C', type=int, help="Generated password count")
 parser.add_argument('-P', type=str, help="Path to save result")
-
 
 args = parser.parse_args()
 
@@ -59,34 +90,11 @@ if args.L or args.C or args.P:
                 print(
                     colorama.Fore.LIGHTRED_EX + "\nPath to save is not promted:Result will not be saved!" + colorama.Fore.RESET)
                 generated_passwords = gen_pass(args.L, args.C)
-                print("\n==========================================")
-                for password in generated_passwords:
-                    print(colorama.Fore.LIGHTGREEN_EX + password + colorama.Fore.RESET)
-                    print("==========================================")
+                print_generated_passwords(generated_passwords)
             elif args.P:
                 generated_passwords = gen_pass(args.L, args.C)
-                print("\n==========================================")
-                for password in generated_passwords:
-                    print(colorama.Fore.LIGHTGREEN_EX + password + colorama.Fore.RESET)
-                    print("==========================================")
-                if os.path.exists(args.P):
-                    date = f"{datetime.datetime.now().year}_{datetime.datetime.now().month}_{datetime.datetime.now().day}_{datetime.datetime.now().hour}_{datetime.datetime.now().minute}_{datetime.datetime.now().second}"
-                    try:
-                        with open(f"{args.P}result_{date}.txt", "w", encoding="utf-8") as file:
-                            file.write("==========================================")
-                            for passwords in generated_passwords:
-                                file.write("\n"+passwords + "\n")
-                                file.write("==========================================")
-                            else:
-                                print(f"Result has been successfully saved in {args.P}result_{date}.txt")
-                    except:
-                        if PermissionError:
-                            print(colorama.Fore.LIGHTRED_EX + "Unable create file in directory:Permission denied")
-                        else:
-                            print("Unknown Error")
-
-                elif not os.path.exists(args.P):
-                    print(colorama.Fore.LIGHTRED_EX + "\nPath does not exists!")
+                print_generated_passwords(generated_passwords)
+                save_result_in_file(generated_passwords, args.P)
 
 
 else:
@@ -100,39 +108,15 @@ else:
         try:
             password_lenght = int(password_lenght)
             password_count = int(password_count)
-
-
         except:
             print(colorama.Fore.LIGHTRED_EX + "Error promt only number")
             sys.exit()
 
         generated_passwords = gen_pass(password_lenght, password_count)
-        print("\n==========================================")
-        for password in generated_passwords:
-            print(colorama.Fore.LIGHTGREEN_EX + password + colorama.Fore.RESET)
-            print("==========================================")
-
+        print_generated_passwords(generated_passwords)
         save = input("\nDo you want save result? (y/n)")
         if save.lower() in ["y", "yes"]:
             path = input("\nWrite path? ")
-            if os.path.exists(path):
-                date = f"{datetime.datetime.now().year}_{datetime.datetime.now().month}_{datetime.datetime.now().day}_{datetime.datetime.now().hour}_{datetime.datetime.now().minute}_{datetime.datetime.now().second}"
-                try:
-                    with open(f"{path}result_{date}.txt", "w", encoding="utf-8") as file:
-                        file.write("==========================================")
-                        for passwords in generated_passwords:
-                            file.write("\n"+passwords + "\n")
-                            file.write("==========================================")
-                        else:
-                            print(f"Result has been successfully saved in {path}result_{date}.txt")
-                except:
-                    if PermissionError:
-                        print(colorama.Fore.LIGHTRED_EX + "Unable create file in directory:Permission denied")
-                    else:
-                        print("Unknown Error")
-
-            elif not os.path.exists(path):
-                print(colorama.Fore.LIGHTRED_EX + "Path does not exists!")
+            save_result_in_file(generated_passwords, path)
         elif save.lower() in ["n", "no"]:
             pass
-
